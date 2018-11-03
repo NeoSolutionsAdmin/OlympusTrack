@@ -1,0 +1,9 @@
+*.cache
+*CodeAnal*.*
+TrackSystem/Bin/roslyn
+packages
+Entities/bin
+Entities/obj
+Connection/bin
+Connection/obj
+
