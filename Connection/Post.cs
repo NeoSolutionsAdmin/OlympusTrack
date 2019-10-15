@@ -24,6 +24,22 @@ namespace Connection
             }
         }
 
+        public static DataTable GetLastPosts(int ProjectId, int Length)
+        {
+            TrackerDataSet.SelectLastPostsByIdProjectDataTable DT = new TrackerDataSet.SelectLastPostsByIdProjectDataTable();
+            TrackerDataSetTableAdapters.SelectLastPostsByIdProjectTableAdapter TA = new TrackerDataSetTableAdapters.SelectLastPostsByIdProjectTableAdapter();
+            TA.Fill(DT, ProjectId, Length);
+            if (DT.Rows.Count > 0)
+            {
+                return DT;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
         public static DataRow SelectPostById(int p_PostId)
         {
             TrackerDataSet.SelectPostByIdDataTable DT = new TrackerDataSet.SelectPostByIdDataTable();

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Models
 {
+   
     public class Post
     {
 
@@ -22,10 +23,11 @@ namespace Entities.Models
         int i_userid;
         DateTime i_date;
         string i_body;
-        int i_parentsprint;
-        int i_parentpost;
+        int i_parentsprint=0;
+        int i_parentpost=0;
         string i_type;
 
+        
         
         public int ID { get { return i_id; } }
         public User USER { get { return User.getUserById(i_userid); } }
@@ -90,6 +92,51 @@ namespace Entities.Models
             {
                 return null;
             }
+        }
+
+        public static List<SimplifyModels.MinPost> GetLastMiniPosts(int p_projectId, int p_length)
+        {
+            DataTable dt = Connection.Post.GetLastPosts(p_projectId, p_length);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                List<SimplifyModels.MinPost> mpl = new List<SimplifyModels.MinPost>();
+                foreach (DataRow dr in dt.Rows)
+                {
+                    Post P = new Post(dr);
+                    SimplifyModels.MinPost MP = new SimplifyModels.MinPost(P);
+                    mpl.Add(MP);
+                }
+                return mpl;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        public void GetBranch(ref List<Branch> MyBranch)
+        {
+            Branch b = new Branch(this);
+            MyBranch.Add(b);
+            if (i_parentpost != 0)
+            {
+                Post.SelectById(i_parentpost).GetBranch(ref MyBranch);                
+            }
+            if (i_parentsprint != 0)
+            {
+                Sprint.SelectById(i_parentsprint).GetBranch(ref MyBranch);
+            }
+        }
+
+        public static Post SelectById(int PostID)
+        {
+            DataRow dr = Connection.Post.SelectPostById(PostID);
+            if (dr != null)
+            {
+                return new Post(dr);
+            }
+            else { return null; }
         }
 
         private Post(DataRow p_dr)

@@ -11,7 +11,12 @@ public partial class ctrl_Stats : System.Web.UI.UserControl
     {
 
     }
-    public void SetCounters(int CountComment, int CountBug, int CountTask, int CountDone)
+    public void SetCountersSprint(int CountPaused, int CountAnalyze, int CountDevelopment, int CountFinalize, int CountFeature)
+    {
+        string Countervalues = CountPaused + "," + CountAnalyze + "," + CountDevelopment + "," + CountFinalize  + "," +  CountFeature;
+        CountSprintHidden.Value = Countervalues;
+    }
+    public void SetCountersPost(int CountComment, int CountBug, int CountTask, int CountDone)
     {
         string Countervalues = CountComment + "," + CountBug + "," + CountTask + "," + CountDone;
         CountHidden.Value = Countervalues;

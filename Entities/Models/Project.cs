@@ -16,6 +16,37 @@ namespace Entities.Models
         public int ID { get { return i_id; } }
         public List<Sprint> SPRINTS { get { return Sprint.LoadProjectsSprints(this); } }
 
+        public List<User> GetUsers()
+        {
+            DataTable dt = Connection.Project.SelectIdUsersByProjectId(i_id);
+            if (dt != null)
+            {
+                List<User> ul = new List<User>();
+                foreach (DataRow dr in dt.Rows)
+                {
+                    User u = User.getUserById(int.Parse(dr["UserId"].ToString()));
+                    if (u != null)
+                    {
+                        ul.Add(u);
+                    }
+
+                }
+                if (ul.Count > 0)
+                {
+                    return ul;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
+
         private Project(DataRow p_dr)
         {
             i_id = int.Parse(p_dr["Id"].ToString());

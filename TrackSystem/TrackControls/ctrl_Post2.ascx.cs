@@ -26,7 +26,10 @@ public partial class ctrl_Post2 : System.Web.UI.UserControl
 
     public void setPost(Entities.Models.Post p_Post, int level, ref int CounterComment, ref int CounterBug, ref int CounterTask, ref int CounterDone)
     {
+       
+
         i_Post = p_Post;
+        VerBranch.Attributes.Add("OnClick", "JsonAndTable(" + i_Post.ID + ")");
 
         if (i_Post.TASK == Post.PosttypeAchievement) CounterDone++;
         if (i_Post.TASK == Post.PosttypeComment) CounterComment++;
@@ -167,6 +170,17 @@ public partial class ctrl_Post2 : System.Web.UI.UserControl
     protected void txtSendComment_Click(object sender, EventArgs e)
     {
         Entities.Models.Post.NewChildPost((Session[Entities.Constants.Key_Sessions.UserKey] as User), txtAnswer.Text, i_Post,cmbcommenttype.SelectedValue);
+        List<User> ul = (Session[Entities.Constants.Key_Sessions.ProjectKey] as Project).GetUsers();
+        if (ul != null && ul.Count > 0)
+        {
+            foreach (User u in ul)
+            {
+                if (u.EMAIL != null)
+                {
+                    Entities.staticFunctions.sendMail(u.USER, u.EMAIL, "Comentario de tracker from:" + (Session[Entities.Constants.Key_Sessions.UserKey] as User).USER, txtAnswer.Text);
+                }
+            }
+        }
         Response.Redirect("/Project.aspx");
     }
 

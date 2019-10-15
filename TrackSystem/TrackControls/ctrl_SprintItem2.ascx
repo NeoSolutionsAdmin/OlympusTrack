@@ -10,7 +10,8 @@
         <asp:Button Text="P" runat="server" ID="btnPausado" OnClick="btnPausado_Click"/>
         <asp:Button Text="A" runat="server" ID="btnAnalisis" OnClick="btnAnalisis_Click"/>
         <asp:Button Text="D" runat="server" ID="btnDesarrollo" OnClick="btnDesarrollo_Click" />
-        <asp:Button Text="F" runat="server" ID="btnFinalizado" OnClick="btnFinalizado_Click" /></span><br />
+        <asp:Button Text="F" runat="server" ID="btnFinalizado" OnClick="btnFinalizado_Click" />
+        <asp:Button Text="Ft." runat="server" ID="btnFeature" OnClick="btnFeature_Click" /></span><br />
         <span class="NormalLabel NormalFontColor">Fecha:</span><span class="NormalLabel HighlightFontColor" runat="server" id="SpanDate"></span><br />
         <span class="NormalLabel NormalFontColor">Usuario:</span><span class="NormalLabel HighlightFontColor" runat="server" id="SpanUser"></span><br />
     </div>

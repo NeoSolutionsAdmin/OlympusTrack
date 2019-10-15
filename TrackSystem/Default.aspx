@@ -10,10 +10,12 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="Css/main.css" />
+    <link href="https://fonts.googleapis.com/css?family=Charm" rel="stylesheet"> 
+    <script src='js/snowfall.jquery.js'></script>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div id="Page_Title" class="NormalFontColor">OLYMPUS SOFTWARE - TRACK</div>
+        <div id="Page_Title" class="XmasFont"><img src="/Icons/Muerdago.png" width="64px" height="64px" /> Olympus Software - Track <img src="/Icons/Muerdago.png" width="64px" height="64px" /></div>
         <div id="PlaceHolderControlBar">
             <TrackControls:ctrl_LoginBar runat="server" ID="ctrl_LoginBar" />
         </div>
@@ -21,5 +23,14 @@
             <TrackControls:ctrl_ProjectsList runat="server" ID="ctrl_ProjectsList" />
         </div>
     </form>
+    <script type='text/javascript'> 
+	
+$(document).ready(function(){
+			
+$(document).snowfall({deviceorientation : true, round : true, minSize: 1, maxSize:8,  flakeCount : 250});
+
+});
+
+ </script>
 </body>
 </html>

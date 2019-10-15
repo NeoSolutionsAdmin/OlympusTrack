@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Models
 {
+    
     public class Sprint
     {
         /* [Id] [bigint] IDENTITY(1,1) NOT NULL,
@@ -28,6 +29,7 @@ namespace Entities.Models
          public static string EstadoAnalisis = "Analisis";
          public static string EstadoDesarrollo = "Desarrollo";
          public static string EstadoFinalizado = "Finalizado";
+        public static string EstadoFeature = "Feature";
 
          private int i_id;
          private int i_UserId;
@@ -81,6 +83,25 @@ namespace Entities.Models
             {
                 return null;
             }
+        }
+
+        public void GetBranch(ref List<Branch> MyBranch)
+        {
+            MyBranch.Add(new Branch(this));
+        }
+
+        public static Sprint SelectById(int p_sprintId)
+        {
+            DataRow dr = Connection.Sprint.SelectSprintById(p_sprintId);
+            if (dr != null)
+            {
+                return new Sprint(dr);
+            }
+            else
+            {
+                return null;
+            }
+
         }
 
         public static Sprint CreateNewSprint(User CreatedBy, Project ParentProject, string Description, int EstimatedDays)

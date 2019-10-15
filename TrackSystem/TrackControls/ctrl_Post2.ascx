@@ -2,6 +2,7 @@
 <div class="post">
 <div class="NormalFont"><img runat="server" id="imgposttype" width="16" height="16" /><span id="nombreusuario" class="NormalFontColor" runat="server"></span></span><span id="rol" class="HighlightFontColor" runat="server"></span>:</div>
 <asp:Button ID="btnBorrarComment" Text="Borrar" runat="server" OnClick="btnBorrarComment_Click" />
+<input type="button" value="Ver Rama" id="VerBranch" runat="server" />
     <span class="NormalLabel NormalFontColor">Cambiar Tipo de post:</span>
 <asp:DropDownList ID="cmbChangePostType" runat="server" OnSelectedIndexChanged="cmbChangePostType_SelectedIndexChanged" AutoPostBack="true">
     <asp:ListItem Selected="True" Text="Comentario" Value="Comment"></asp:ListItem>

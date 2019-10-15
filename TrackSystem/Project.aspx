@@ -3,6 +3,11 @@
 <%@ Register Src="~/TrackControls/ctrl_LoginBar.ascx" TagPrefix="TrackControls" TagName="ctrl_LoginBar" %>
 <%@ Register Src="~/TrackControls/ctrl_ProjectsList.ascx" TagPrefix="TrackControls" TagName="ctrl_ProjectsList" %>
 <%@ Register Src="~/TrackControls/ctrl_SprintItem2.ascx" TagPrefix="TrackControls" TagName="ctrl_SprintItem2" %>
+<%@ Register Src="~/TrackControls/ctrl_Stats.ascx" TagPrefix="TrackControls" TagName="ctrl_Stats" %>
+<%@ Register Src="~/TrackControls/ctrl_PostViewer.ascx" TagPrefix="TrackControls" TagName="ctrl_PostViewer" %>
+<%@ Register Src="~/TrackControls/ctrl_LastComments.ascx" TagPrefix="TrackControls" TagName="ctrl_LastComments" %>
+
+
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -14,10 +19,12 @@
     <script src="Scripts/Chart.bundle.min.js"></script>
     <script src="Scripts/Main.js"></script>
     <link rel="stylesheet" href="Css/main.css" />
+    <link href="https://fonts.googleapis.com/css?family=Charm" rel="stylesheet"> 
+    <script src='js/snowfall.jquery.js'></script>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div id="Page_Title" class="NormalFontColor">OLYMPUS SOFTWARE - TRACK</div>
+        <div id="Page_Title" class="XmasFont"><img src="/Icons/Muerdago.png" width="64px" height="64px" /> Olympus Software - Track <img src="/Icons/Muerdago.png" width="64px" height="64px" /></div>
         <div id="PlaceHolderControlBar">
             <TrackControls:ctrl_LoginBar runat="server" ID="ctrl_LoginBar" />
         </div>
@@ -48,6 +55,8 @@
                 </td>
                 <td style="vertical-align:top;width:25%">
                     <div id="DivStats" runat="server"></div>
+                    <TrackControls:ctrl_LastComments runat="server" id="ctrl_LastComments" />
+                    <TrackControls:ctrl_PostViewer runat="server" ID="ctrl_PostViewer" />
                 </td>
             </tr>
         </table>
@@ -57,6 +66,11 @@
     <script>
         ContractAllSprints();
         ContractAllComments();
+        $(document).ready(function(){
+			
+$(document).snowfall({deviceorientation : true, round : true, minSize: 1, maxSize:8,  flakeCount : 250});
+
+});
     </script>
 </body>
 </html>

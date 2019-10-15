@@ -14,12 +14,15 @@ namespace Entities.Models
         int i_Rol;
         int i_Id;
         Role i_Role;
+        string i_email = null;
+
 
         //Id UserName Rol Password
 
         public string USER { get { return i_User; } }
         public Role ROLE { get { return i_Role; } }
         public int ID { get { return i_Id; } }
+        public String EMAIL{ get { return i_email; } }
 
         private User(DataRow p_DR)
         {
@@ -28,6 +31,14 @@ namespace Entities.Models
             i_Rol = int.Parse(p_DR["Rol"].ToString());
             i_Id = int.Parse(p_DR["Id"].ToString());
             i_Role = Role.GetRolById(i_Rol);
+            if (p_DR.IsNull("Email") == false)
+            {
+                i_email = p_DR["Email"].ToString();
+            }
+            else
+            {
+                i_email = null;
+            }
         }
 
 

@@ -26,7 +26,7 @@ public partial class ctrl_SprintItem2 : System.Web.UI.UserControl
         jtestado.InnerText = "(" + i_sprint.ESTADO + ")";
         string state;
         
-            jtestado.Attributes["class"] = "NormalLabel ST" + i_sprint.ESTADO.ToLower();
+        jtestado.Attributes["class"] = "NormalLabel ST" + i_sprint.ESTADO.ToLower();
         //#666666 pausado
         //#66ff66 desarrollo
         //#6666ff analisis
@@ -57,12 +57,12 @@ public partial class ctrl_SprintItem2 : System.Web.UI.UserControl
 
 
 
-        protected void btnGuardar_Click(object sender, EventArgs e)
-        {
+    protected void btnGuardar_Click(object sender, EventArgs e)
+    {
             Entities.Models.Post.NewParentPost((Session[Entities.Constants.Key_Sessions.UserKey] as Entities.Models.User), TxtParentPost.Text, i_sprint,Post.PosttypeComment);
             Response.Redirect("/Project.aspx");
 
-        }
+    }
 
     protected void btnPausado_Click(object sender, EventArgs e)
     {
@@ -85,6 +85,12 @@ public partial class ctrl_SprintItem2 : System.Web.UI.UserControl
     protected void btnFinalizado_Click(object sender, EventArgs e)
     {
         i_sprint.ChangeState(Sprint.EstadoFinalizado);
+        Response.Redirect("/Project.aspx");
+    }
+
+    protected void btnFeature_Click(object sender, EventArgs e)
+    {
+        i_sprint.ChangeState(Sprint.EstadoFeature);
         Response.Redirect("/Project.aspx");
     }
 }

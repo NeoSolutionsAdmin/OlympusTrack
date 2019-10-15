@@ -24,6 +24,22 @@ namespace Connection
             }
         }
 
+        public static DataTable SelectIdUsersByProjectId(int p_ProjectId)
+        {
+            TrackerDataSet.SelectUsersByIdProjectDataTable DT = new TrackerDataSet.SelectUsersByIdProjectDataTable();
+            TrackerDataSetTableAdapters.SelectUsersByIdProjectTableAdapter TA = new TrackerDataSetTableAdapters.SelectUsersByIdProjectTableAdapter();
+            TA.Fill(DT, p_ProjectId);
+            if (DT.Rows.Count > 0)
+            {
+                return DT;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
         public static DataRow SelectProjectById(int p_ProjectId)
         {
             TrackerDataSet.SelectProjectByIdDataTable DT = new TrackerDataSet.SelectProjectByIdDataTable();

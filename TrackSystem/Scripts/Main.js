@@ -75,4 +75,48 @@ function ToggleSprint(sprintButton)
     
 }
 
+function JsonAndTable(IdPost)
+{
+    $.ajax(
+        {
+            url: "/WebService/GetTree.aspx?PostId=" + IdPost,
+            dataType: "json",
+            cache: false,
+            type:"get",
+            success: function (data)
+            {
+                $('#viewerwindow').show();
+                $("#postviewer").empty();
+                for (a = 0; a < data.length; a++)
+                {
+                    createControl(data[a]);
+                }
+
+            },
+            error: function ()
+            {
+                alert("error");
+            }
+            
+        });
+}
+
+function createControl(MyObject)
+{
+    
+    var containerstart = "<div class=\"" + MyObject.state + "\">";
+    var title = "<div class=\"ViewerPostUser\">" + MyObject.user + "<span class=\"ViewerPostRol\">" + MyObject.userrol + "</span></div>";
+    var body = "<div class=\"" + MyObject.datatype + "cssclass" + "\">" + MyObject.body + "</div>";
+    var containerend = "</div>";
+    var UserControl = containerstart + title + body + containerend;
+    $("#postviewer").append(UserControl);
+
+
+}
+
+function CloseViewer()
+{
+    $('#viewerwindow').hide();
+}
+
 
